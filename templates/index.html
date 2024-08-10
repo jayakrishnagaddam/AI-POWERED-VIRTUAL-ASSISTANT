@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Virtual Assistant</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .elegant-shape {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #6dd5ed, #2193b0);
+            border-radius: 20px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .elegant-shape:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .elegant-shape {
+                width: 140px;
+                height: 140px;
+                font-size: 0.9rem;
+                margin: 15px;
+            }
+        }
+
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #0056b3;
+        }
+    </style>
+    {%include 'bootstrap.html'%}
+    {%include 'nav.html'%}
+</head>
+<body>
+    <div class="container text-center mt-4">
+        <h1 class="">AI Virtual Assistant</h1>
+        <div class="row justify-content-center">
+            <div class="col-6 col-md-4">
+                <div class="elegant-shape" onclick="handleVoiceCommand()">
+                    Voice Command
+                </div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="elegant-shape" onclick="handleNLP()">
+                    NLP
+                </div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="elegant-shape" onclick="handleTTS()">
+                    Text-to-Speech
+                </div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="elegant-shape" onclick="handleTaskAutomation()">
+                    Task Automation
+                </div>
+            </div>
+            <div class="col-6 col-md-4">
+                <div class="elegant-shape" onclick="handleWeather()">
+                    Weather Info
+                </div>
+            </div>
+        </div>
+
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        function handleVoiceCommand() {
+            fetch('/voice-command', {
+                method: 'POST'
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerText = data;
+            });
+        }
+
+        function handleNLP() {
+            const text = prompt("Enter text for NLP processing:");
+            fetch('/nlp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `text=${encodeURIComponent(text)}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerText = data;
+            });
+        }
+
+        function handleTTS() {
+            const text = prompt("Enter text for Text-to-Speech:");
+            fetch('/tts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `text=${encodeURIComponent(text)}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerText = data;
+            });
+        }
+
+        function handleTaskAutomation() {
+            fetch('/task-automation', {
+                method: 'POST'
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerText = data;
+            });
+        }
+
+        function handleWeather() {
+            fetch('/weather', {
+                method: 'POST'
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('result').innerText = data;
+            });
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

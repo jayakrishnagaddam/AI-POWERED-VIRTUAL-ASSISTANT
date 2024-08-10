@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar</title>
+    
+    <style>
+        .navbar-custom {
+            background-color: rgb(0, 0, 0); 
+        }
+        #aid{
+            font-size: 16px;
+        }
+        
+    </style>
+    {%include 'bootstrap.html'%}
+
+</head>
+<body class="lead">
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand"><b>Ghost-VA</b></a>
+            <div class="row">
+                <div class="col">
+                    <a id="aid" class="nav-link active" aria-current="page" href=""><b>Projects</b></a>
+                </div>
+                <div class="col">
+                    <a id="aid" class="nav-link active" href=""><b>Journey</b></a>
+                </div>
+                <div class="col">
+                    <a id="aid" class="nav-link active" href=""><b>Service</b></a>
+                </div>
+                <div class="col">
+                    <a id="aid" class="nav-link active" href=""><b>Contact</b></a>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>
